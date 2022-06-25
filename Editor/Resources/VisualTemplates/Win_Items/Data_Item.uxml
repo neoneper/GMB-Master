@@ -1,0 +1,74 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:Template name="TMP_ListView_Category" src="project://database/Assets/GMB-Master/Editor/Resources/VisualTemplates/Defaults/Data_Listview.uxml?fileID=9197481963319205126&amp;guid=8ae47ee9353784f3fb706df0599cfe3d&amp;type=3#Data_Listview" />
+    <ui:Template name="TMP_Content_Item_Categories" src="project://database/Assets/GMB-Master/Editor/Resources/VisualTemplates/Defaults/Data_Content.uxml?fileID=9197481963319205126&amp;guid=4f8c21fde55434b8b98307a0d69ae1e7&amp;type=3#Data_Content" />
+    <ui:Template name="Data_SubListview" src="project://database/Assets/GMB-Master/Editor/Resources/VisualTemplates/Defaults/Data_SubListview.uxml?fileID=9197481963319205126&amp;guid=112091e9e37a04641abaa1a29aad5329&amp;type=3#Data_SubListview" />
+    <Style src="project://database/Assets/GMB-Master/Editor/Resources/VisualTemplates/Styles/DefaultTemplateStyle.uss?fileID=7433441132597879392&amp;guid=2b9660a59b404469c8fda7dbf9672dc0&amp;type=3#DefaultTemplateStyle" />
+    <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
+        <ui:VisualElement name="listview_container" style="width: 300px; border-left-color: rgb(47, 47, 47); border-right-color: rgb(47, 47, 47); border-top-color: rgb(47, 47, 47); border-bottom-color: rgb(47, 47, 47); border-right-width: 3px; margin-right: 6px;">
+            <ui:Instance template="TMP_ListView_Category" name="TMP_ListView_Category" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="nocontent" style="flex-grow: 1; display: flex; visibility: visible;">
+            <ui:Label text="NO CONTENT" display-tooltip-when-elided="true" style="flex-shrink: 1; flex-grow: 1; -unity-text-align: middle-center; font-size: 12px; color: rgb(132, 132, 132); background-image: resource(&apos;Icons/home&apos;); -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgba(255, 255, 255, 0.19);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="content_container" style="flex-grow: 1; display: flex;">
+            <ui:Instance template="TMP_Content_Item_Categories" name="general" />
+            <ui:VisualElement name="vendor">
+                <ui:VisualElement name="container_content" style="flex-grow: 0; flex-shrink: 1; border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px; border-left-color: rgb(47, 47, 47); border-right-color: rgb(47, 47, 47); border-top-color: rgb(47, 47, 47); border-bottom-color: rgb(47, 47, 47); height: auto;">
+                    <ui:VisualElement name="headder" class="header">
+                        <ui:Label text="Vendor" display-tooltip-when-elided="true" name="headder_label" style="flex-shrink: 1; flex-grow: 1;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="container" class="container" style="padding-left: 1px; padding-right: 1px; padding-top: 1px; padding-bottom: 1px;">
+                        <ui:VisualElement />
+                        <ui:VisualElement name="content" style="flex-grow: 1; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;">
+                            <uie:IntegerField label="Stack" value="0" binding-path="_maxStack" name="data_stack" />
+                            <uie:FloatField label="Weight" value="0" binding-path="_weight" name="data_weight" />
+                            <uie:LongField label="Buy Price" value="0" binding-path="_buyPrice" name="data_buyPrice" />
+                            <uie:LongField label="Sell Price" value="0" name="data_sellPrice" binding-path="_sellPrice" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="references">
+                <ui:VisualElement name="container_content" style="flex-grow: 0; flex-shrink: 1; border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px; border-left-color: rgb(47, 47, 47); border-right-color: rgb(47, 47, 47); border-top-color: rgb(47, 47, 47); border-bottom-color: rgb(47, 47, 47); height: auto;">
+                    <ui:VisualElement name="headder" class="header">
+                        <ui:Label text="References" display-tooltip-when-elided="true" name="headder_label" style="flex-shrink: 1; flex-grow: 1;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="container" class="container" style="padding-left: 1px; padding-right: 1px; padding-top: 1px; padding-bottom: 1px;">
+                        <ui:VisualElement />
+                        <ui:VisualElement name="content" style="flex-grow: 1; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;">
+                            <ui:VisualElement class="container_find">
+                                <uie:ObjectField label="Category" type="GMB.Data_ItemCategory, GMB" binding-path="_category" name="data_category" allow-scene-objects="false" style="flex-shrink: 1; flex-grow: 1;" />
+                                <ui:Button text="Find" display-tooltip-when-elided="true" name="bt_category" class="bt_find" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="container_find">
+                                <uie:ObjectField label="Element" type="GMB.Data_Element, GMB" binding-path="_element" name="data_element" allow-scene-objects="false" style="flex-shrink: 1; flex-grow: 1;" />
+                                <ui:Button text="Find" display-tooltip-when-elided="true" name="bt_element" class="bt_find" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="container_find">
+                                <uie:ObjectField label="Occasion" type="GMB.Data_Occasion, GMB" binding-path="_occasion" name="data_occasion" allow-scene-objects="false" style="flex-shrink: 1; flex-grow: 1;" />
+                                <ui:Button text="Find" display-tooltip-when-elided="true" name="bt_occasion" class="bt_find" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="container_find">
+                                <uie:ObjectField label="Scope" type="GMB.Data_Scope, GMB" binding-path="_scope" name="data_scope" allow-scene-objects="false" style="flex-shrink: 1; flex-grow: 1;" />
+                                <ui:Button text="Find" display-tooltip-when-elided="true" name="bt_scope" class="bt_find" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="container_find">
+                                <uie:ObjectField label="Usage" type="GMB.Data_Occasion, GMB" binding-path="_usage" name="data_usage" allow-scene-objects="false" style="flex-shrink: 1; flex-grow: 1;" />
+                                <ui:Button text="Find" display-tooltip-when-elided="true" name="bt_usage" class="bt_find" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:Instance template="Data_SubListview" name="attributes" style="min-height: auto;">
+                <AttributeOverrides element-name="header_label" text="Attributes" />
+            </ui:Instance>
+            <ui:Instance template="Data_SubListview" name="recipe">
+                <AttributeOverrides element-name="header_label" text="Recipe" />
+            </ui:Instance>
+            <ui:Instance template="Data_SubListview" name="crafters">
+                <AttributeOverrides element-name="header_label" text="Crafters" />
+            </ui:Instance>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

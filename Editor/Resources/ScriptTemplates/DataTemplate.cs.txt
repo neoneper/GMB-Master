@@ -1,0 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace GMB
+{
+    [CreateAssetMenu(menuName = "GMB/Data/#SCRIPTNAME#")]
+    public class #SCRIPTNAME# : Data
+    {
+
+    }
+}
+
