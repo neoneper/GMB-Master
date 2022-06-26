@@ -11,7 +11,7 @@ using System;
 
 namespace GMBEditor
 {
-    public abstract class GMBEditorWindow<T> where T : Data
+    public abstract class GMBEditorWindow<T> : IGMBEditorWindow where T : Data
     {
 
 
@@ -38,7 +38,7 @@ namespace GMBEditor
             _listview = new GMBEditorListView<T>();
         }
 
-        internal void CreateGUI(GMBWindow gmbWindow)
+        public void CreateGUI(GMBWindow gmbWindow)
         {
             _gmbWindow = gmbWindow;
             LoadContent();
@@ -46,7 +46,7 @@ namespace GMBEditor
 
             OnCreateGUI();
         }
-        internal void CloseGUI()
+        public void CloseGUI()
         {
             UnBind_Content();
             Unregister_Content();
@@ -181,6 +181,7 @@ namespace GMBEditor
         //ABSTRACT Getters
         protected abstract string GetTemplate_FilePath();
         protected abstract string GetTemplate_ListViewItemFilePath();
+        public abstract string GetGMBWindowMenuReferenceName();
 
         //ABSTRACT And Virtuais Events Trigged
         protected abstract void OnCreateGUI();
@@ -192,6 +193,7 @@ namespace GMBEditor
         {
             return _content.Q<E>(elementName);
         }
+
 
     }
 }

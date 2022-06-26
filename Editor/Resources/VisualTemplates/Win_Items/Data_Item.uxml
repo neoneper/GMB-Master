@@ -2,14 +2,13 @@
     <ui:Template name="TMP_ListView_Category" src="project://database/Assets/GMB-Master/Editor/Resources/VisualTemplates/Defaults/Data_Listview.uxml?fileID=9197481963319205126&amp;guid=8ae47ee9353784f3fb706df0599cfe3d&amp;type=3#Data_Listview" />
     <ui:Template name="TMP_Content_Item_Categories" src="project://database/Assets/GMB-Master/Editor/Resources/VisualTemplates/Defaults/Data_Content.uxml?fileID=9197481963319205126&amp;guid=4f8c21fde55434b8b98307a0d69ae1e7&amp;type=3#Data_Content" />
     <ui:Template name="Data_SubListview" src="project://database/Assets/GMB-Master/Editor/Resources/VisualTemplates/Defaults/Data_SubListview.uxml?fileID=9197481963319205126&amp;guid=112091e9e37a04641abaa1a29aad5329&amp;type=3#Data_SubListview" />
+    <ui:Template name="Data_NoContent" src="project://database/Assets/GMB-Master/Editor/Resources/VisualTemplates/Defaults/Data_NoContent.uxml?fileID=9197481963319205126&amp;guid=e5512f455891b4b1296420ffff627890&amp;type=3#Data_NoContent" />
     <Style src="project://database/Assets/GMB-Master/Editor/Resources/VisualTemplates/Styles/DefaultTemplateStyle.uss?fileID=7433441132597879392&amp;guid=2b9660a59b404469c8fda7dbf9672dc0&amp;type=3#DefaultTemplateStyle" />
     <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
         <ui:VisualElement name="listview_container" style="width: 300px; border-left-color: rgb(47, 47, 47); border-right-color: rgb(47, 47, 47); border-top-color: rgb(47, 47, 47); border-bottom-color: rgb(47, 47, 47); border-right-width: 3px; margin-right: 6px;">
             <ui:Instance template="TMP_ListView_Category" name="TMP_ListView_Category" style="flex-grow: 1;" />
         </ui:VisualElement>
-        <ui:VisualElement name="nocontent" style="flex-grow: 1; display: flex; visibility: visible;">
-            <ui:Label text="NO CONTENT" display-tooltip-when-elided="true" style="flex-shrink: 1; flex-grow: 1; -unity-text-align: middle-center; font-size: 12px; color: rgb(132, 132, 132); background-image: resource(&apos;Icons/home&apos;); -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgba(255, 255, 255, 0.19);" />
-        </ui:VisualElement>
+        <ui:Instance template="Data_NoContent" name="nocontent" style="flex-grow: 1;" />
         <ui:VisualElement name="content_container" style="flex-grow: 1; display: flex;">
             <ui:Instance template="TMP_Content_Item_Categories" name="general" />
             <ui:VisualElement name="vendor">

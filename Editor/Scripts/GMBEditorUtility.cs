@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -33,8 +36,23 @@ namespace GMBEditor
                 path
             );
         }
+        [MenuItem("Assets/Create/GMB/DataEditorWindow C# Script", false, 90)]
+        private static void CreateEditorWindowData()
+        {
+            string[] guids = AssetDatabase.FindAssets("DataWindowTemplate.cs");
+            if (guids.Length == 0)
+            {
+                Debug.LogWarning("DataWindowTemplate.cs.txt not found in asset database");
+                return;
+            }
 
-    
+            string path = AssetDatabase.GUIDToAssetPath(guids[0]);
+            CreateFromTemplate(
+                "NewEditorWindowData.cs",
+                path
+            );
+        }
+
         public static void CreateFromTemplate(string initialName, string templatePath)
         {
             ProjectWindowUtil.StartNameEditingIfProjectWindowExists(
@@ -51,7 +69,7 @@ namespace GMBEditor
         {
             public override void Action(int instanceId, string pathName, string resourceFile)
             {
-                Object o = CreateScript(pathName, resourceFile);
+                UnityEngine.Object o = CreateScript(pathName, resourceFile);
                 ProjectWindowUtil.ShowCreatedAsset(o);
             }
         }
@@ -84,7 +102,7 @@ namespace GMBEditor
                 writer.Close();
 
                 AssetDatabase.ImportAsset(pathName);
-                return AssetDatabase.LoadAssetAtPath(pathName, typeof(Object));
+                return AssetDatabase.LoadAssetAtPath(pathName, typeof(UnityEngine.Object));
             }
             else
             {
@@ -152,9 +170,13 @@ namespace GMBEditor
             //popup.AddToClassList("headder_PopupField"); 
             return popup;
         }
+
+
+
     }
 
-
+ 
+    
 
 
 }

@@ -363,6 +363,11 @@ namespace GMBEditor
         #endregion
 
         #region PROTECTED GETTERS
+
+        public override string GetGMBWindowMenuReferenceName()
+        {
+            return "menu_item_items";
+        }
         protected override string GetTemplate_FilePath()
         {
             return EditorStringsProvider._PATH_GMB_EDITOR_TEMPLATES_ + "Win_Items/Data_Item.uxml";

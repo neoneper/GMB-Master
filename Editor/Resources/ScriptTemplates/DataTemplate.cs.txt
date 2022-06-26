@@ -5,6 +5,7 @@ using UnityEngine;
 namespace GMB
 {
     [CreateAssetMenu(menuName = "GMB/Data/#SCRIPTNAME#")]
+    [ResourcesPath("#SCRIPTNAME#s")]
     public class #SCRIPTNAME# : Data
     {
 

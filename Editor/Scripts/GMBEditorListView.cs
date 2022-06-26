@@ -92,8 +92,21 @@ namespace GMBEditor
         {
 
             _listView_items.onSelectionChange -= OnSelectionChanged;
-            _buttonAddItem.UnregisterCallback<PointerDownEvent>(OnButtonAdd, TrickleDown.TrickleDown);
-            _buttonRefresh.clicked -= OnButtonRefresh;
+
+            if (_buttonAddItem != null)
+            {
+                _buttonAddItem.UnregisterCallback<PointerDownEvent>(OnButtonAdd, TrickleDown.TrickleDown);
+            }
+
+            if (_buttonRefresh != null)
+            {
+                _buttonRefresh.clicked -= OnButtonRefresh;
+            }
+
+            if (_buttonRemove != null)
+            {
+                _buttonRemove.clicked -= OnButtonRemove;
+            }
         }
         public void Refresh()
         {
@@ -231,8 +244,6 @@ namespace GMBEditor
 
 
         }
-
-
         private void OnButtonAdd(PointerDownEvent evt)
         {
 
