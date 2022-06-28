@@ -1,24 +1,27 @@
 ﻿{
-  "name": "com.neoneper.gmb",
-  "version": "0.0.1",
-  "displayName": "Game Manager BackEnd",
-  "description": "Gerenciador de dados ScriptableObjects",
-  "unity": "2019.1",
-  "unityRelease": "0b5",
-  "documentationUrl": "https://github.com/neoneper/GMB-Master/wiki",
-  "changelogUrl": "https://github.com/neoneper/GMB-Master",
-  "licensesUrl": "https://github.com/neoneper/GMB-Master",
+    "name": "com.neoneper.gmb",
+    "version": "0.0.1",
+    "displayName": "Game Manager BackEnd",
+    "description": "Gerenciador de dados ScriptableObjects",
+    "unity": "2019.1",
+    "unityRelease": "0b5",
+    "documentationUrl": "https://github.com/neoneper/GMB-Master/wiki",
+    "changelogUrl": "https://github.com/neoneper/GMB-Master",
+    "licensesUrl": "https://github.com/neoneper/GMB-Master",
+    "category": "tools",
+    "dependencies": {},
+    "keywords": [
+        "GMB",
+        "Master",
+        "Game",
+        "Manager",
+        "BackEnd"
+    ],
+    "author": {
+        "name": "Julio Cesar Pereira",
+        "email": "julio.doublehitgames@gmail.com",
+        "url": "https://github.com/neoneper"
+    }
 
- "keywords": [
-    "GMB",
-    "Master",
-    "Game",
-    "Manager",
-    "BackEnd",
-  ],
-  "author": {
-    "name": "Julio Cesar Pereira",
-    "email": "julio.doublehitgames@gmail.com",
-    "url": "https://github.com/neoneper"
-  }
+
 }
