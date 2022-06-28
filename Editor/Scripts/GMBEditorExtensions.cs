@@ -5,7 +5,7 @@ using UnityEditor;
 using System;
 using System.Reflection;
 using UnityEngine.UIElements;
-
+using System.Linq;
 namespace GMBEditor
 {
     public static class GMBEditorExtensions
@@ -110,10 +110,96 @@ namespace GMBEditor
 
             int index = input.IndexOf(character);
             if (index >= 0)
-                input = input.Substring(index+1);
+                input = input.Substring(index + 1);
 
             return input;
         }
+
+
+
+        public static object GetValue(this SerializedProperty property)
+        {
+            System.Type parentType = property.serializedObject.targetObject.GetType();
+            System.Reflection.FieldInfo fi = parentType.GetFieldViaPath(property.propertyPath);
+            return fi.GetValue(property.serializedObject.targetObject);
+        }
+        public static void SetValue(this SerializedProperty property, object value)
+        {
+            System.Type parentType = property.serializedObject.targetObject.GetType();
+            System.Reflection.FieldInfo fi = parentType.GetFieldViaPath(property.propertyPath);//this FieldInfo contains the type.
+            fi.SetValue(property.serializedObject.targetObject, value);
+            property.serializedObject.ApplyModifiedProperties();
+        }
+        public static System.Type GetFieldType(this SerializedProperty property)
+        {
+            System.Type parentType = property.serializedObject.targetObject.GetType();
+            System.Reflection.FieldInfo fi = parentType.GetFieldViaPath(property.propertyPath);
+
+
+            /*
+            if (fi.FieldType.IsArray)
+            {
+                return fi.FieldType.GetElementType();
+            }
+            else if (fi.FieldType.IsGenericType)
+            {
+                return fi.FieldType.GetGenericArguments()[0];
+            }
+            else
+            {
+                return fi.FieldType;
+            }*/
+            return fi.FieldType;
+        }
+        public static System.Reflection.FieldInfo GetFieldViaPath(this System.Type type, string path)
+        {
+            var flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+            var parent = type;
+            var fi = parent.GetField(path, flags);
+            var paths = path.Split('.');
+
+            for (int i = 0; i < paths.Length; i++)
+            {
+                fi = parent.GetField(paths[i], flags);
+                if (fi != null)
+                {
+                    // there are only two container field type that can be serialized:
+                    // Array and List<T>
+                    if (fi.FieldType.IsArray)
+                    {
+                        parent = fi.FieldType.GetElementType();
+                        i += 2;
+                        continue;
+                    }
+
+                    if (fi.FieldType.IsGenericType)
+                    {
+                        parent = fi.FieldType.GetGenericArguments()[0];
+                        i += 2;
+                        continue;
+                    }
+                    parent = fi.FieldType;
+                }
+                else
+                {
+                    break;
+                }
+
+            }
+            if (fi == null)
+            {
+                if (type.BaseType != null)
+                {
+                    return GetFieldViaPath(type.BaseType, path);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            return fi;
+        }
     }
+
 
 }

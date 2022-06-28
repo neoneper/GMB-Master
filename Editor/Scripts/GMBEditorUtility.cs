@@ -129,6 +129,23 @@ namespace GMBEditor
 
             return result;
         }
+        public static List<GMB.Data> FindAllFilesInPath(string path, Type type, bool autoCreateDirectory = true) 
+        {
+            if (autoCreateDirectory)
+                Directory.CreateDirectory(path);
+
+            string[] allPaths = Directory.GetFiles(path, "*.asset", SearchOption.AllDirectories);
+            List<GMB.Data> result = new List<GMB.Data>();
+
+            foreach (string searchPath in allPaths)
+            {
+                string cleanedPath = searchPath.Replace("\\", "/");
+                var file = AssetDatabase.LoadAssetAtPath(cleanedPath, type);
+                result.Add((GMB.Data)file);
+            }
+
+            return result;
+        }
         public static bool DeleteAsset(GMB.Data data)
         {
             string filePath = AssetDatabase.GetAssetPath(data);

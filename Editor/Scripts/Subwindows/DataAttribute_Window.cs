@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GMB;
@@ -12,7 +12,7 @@ using UnityEditor.Experimental.GraphView;
 namespace GMBEditor
 {
     //This is the windows implementation of the your Data Type.
-    public class #SCRIPTNAME# : GMBEditorWindow<Data> //Need to change Implementation data Type
+    public class DataAttribute_Window : GMBEditorWindow<Data_Attribute> 
     {
 
         //Trigged when this window is oppen
@@ -43,7 +43,7 @@ namespace GMBEditor
         //Its will be used to Binding automatically this Window implementation with some menu button of the Root window
         public override string GetGMBWindowMenuReferenceName()
         {
-            return "no_menu_name";
+            return "menu_attribute_items";
         }
 
     }

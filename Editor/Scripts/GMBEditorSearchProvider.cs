@@ -37,6 +37,13 @@ namespace GMBEditor
                 UnityEngine.Object obj = AssetDatabase.LoadAssetAtPath<T>(path);
                 return obj as T;
             }
+            public UnityEngine.Object GetDataFile(Type type)
+            {
+                string path = DataEditorUtility.GetAbsoluteResourcesDatasPath(type).Combine(resultFileName);
+                // Debug.Log(path);
+                UnityEngine.Object obj = AssetDatabase.LoadAssetAtPath(path,type);
+                return obj;
+            }
 
             public SearchResult(string[] entry)
             {

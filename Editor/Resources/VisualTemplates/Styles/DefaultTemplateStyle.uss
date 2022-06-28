@@ -211,3 +211,15 @@
 .bt_find {
     width: 150px;
 }
+
+.content {
+    flex-grow: 1;
+}
+
+.root_content_container {
+    flex-grow: 1;
+}
+
+.root_content_container{
+    flex-grow: 1;
+}
