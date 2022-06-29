@@ -1,5 +1,5 @@
 {
-    "name": "com.neoneper.gmbeditor",
+    "name": "GMBEditor",
     "rootNamespace": "GMBEditor",
     "references": [
         "GUID:ac17bf77b46184fc1b51c0bad103e671"

@@ -1,5 +1,5 @@
 {
-    "name": "com.neoneper.gmb",
+    "name": "GMB",
     "rootNamespace": "GMB",
     "references": [],
     "includePlatforms": [],
@@ -11,7 +11,7 @@
     "defineConstraints": [],
     "versionDefines": [
         {
-            "name": "com.neoneper.gmb",
+            "name": "GMB",
             "expression": "0.0.1",
             "define": "GMB_PACK"
         }
