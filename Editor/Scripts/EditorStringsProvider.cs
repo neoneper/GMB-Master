@@ -12,6 +12,9 @@ namespace GMBEditor
         {
             get
             {
+#if GMB_PACK
+ return _PACKAGEPATH_;
+#endif
                 /*
                 Assembly currentAssembly = typeof(GMB.Data).Assembly;
                 List<AssemblyName> referencedAssemblies = currentAssembly.GetReferencedAssemblies().ToList();
@@ -22,7 +25,7 @@ namespace GMBEditor
                 }*/
 
 
-                return _PACKAGEPATH_;
+                return _PATH_GMB_;
 
 
             }
