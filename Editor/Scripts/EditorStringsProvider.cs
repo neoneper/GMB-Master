@@ -12,16 +12,17 @@ namespace GMBEditor
         {
             get
             {
+                /*
                 Assembly currentAssembly = typeof(GMB.Data).Assembly;
                 List<AssemblyName> referencedAssemblies = currentAssembly.GetReferencedAssemblies().ToList();
 
                 if (referencedAssemblies.Exists(r => r == currentAssembly.GetName()))
                 {
                     return _PACKAGEPATH_;
-                }
+                }*/
 
 
-                return _PATH_GMB_;
+                return _PACKAGEPATH_;
 
 
             }
