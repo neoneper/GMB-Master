@@ -3,6 +3,7 @@ using UnityEditor;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 namespace GMBEditor
 {
@@ -12,19 +13,12 @@ namespace GMBEditor
         {
             get
             {
-#if GMB_PACK
- return _PACKAGEPATH_;
-#endif
-                /*
-                Assembly currentAssembly = typeof(GMB.Data).Assembly;
-                List<AssemblyName> referencedAssemblies = currentAssembly.GetReferencedAssemblies().ToList();
 
-                if (referencedAssemblies.Exists(r => r == currentAssembly.GetName()))
+
+                if (Directory.Exists(Path.GetFullPath("Packages/com.neoneper.gmb/Behaviour/")))
                 {
                     return _PACKAGEPATH_;
-                }*/
-
-
+                }
                 return _PATH_GMB_;
 
 

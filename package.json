@@ -10,13 +10,6 @@
     "licensesUrl": "https://github.com/neoneper/GMB-Master",
     "category": "tools",
     "dependencies": {},
-    "versionDefines": [
-        {
-            "name": "com.neoneper.gmb",
-            "expression": "0.0.1",
-            "define": "GMB_PACK"
-        }
-    ],
     "keywords": [
         "GMB",
         "Master",
