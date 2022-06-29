@@ -130,7 +130,7 @@ namespace GMBEditor
                     }
                     else
                     {
-                        image = EditorGUIUtility.ObjectContent(data, data.GetType()).image;
+                        image = GMBEditorStyles.TextureUnKnow;
                     }
 
                 }

@@ -1,5 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/GMB-Master/Editor/Resources/VisualTemplates/Styles/DefaultTemplateStyle.uss?fileID=7433441132597879392&amp;guid=2b9660a59b404469c8fda7dbf9672dc0&amp;type=3#DefaultTemplateStyle" />
     <ui:VisualElement name="menu_item" class="gmb_menu_item" style="height: 30px;">
         <ui:VisualElement name="icon" style="background-image: resource(&apos;Icons/Undefined&apos;); width: 23px; height: 23px; -unity-background-scale-mode: scale-to-fit; flex-grow: 0; flex-shrink: 0;" />
         <ui:VisualElement name="label" style="flex-grow: 1; margin-right: 0; margin-left: 10px;">

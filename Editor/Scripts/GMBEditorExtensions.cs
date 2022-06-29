@@ -10,17 +10,8 @@ namespace GMBEditor
 {
     public static class GMBEditorExtensions
     {
-        public static Sprite GetEditorProperty_Icon(this GMB.Data data)
-        {
-            if (data.GetIcon() == null)
-            {
-                data.GetSerializedObject().FindProperty("_icon").objectReferenceValue = GMBEditorStyles.SpriteUnKnow;
-                EditorUtility.SetDirty(data);
-                AssetDatabase.SaveAssetIfDirty(data);
-            }
-
-            return data.GetIcon();
-        }
+        
+     
 
         //Attributes
         public static T GetPropertyAttribute<T>(this SerializedProperty prop, bool inherit) where T : PropertyAttribute

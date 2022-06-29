@@ -119,7 +119,14 @@ namespace GMBEditor
             VisualElement thumb = element.Q<VisualElement>("img");
 
             title.text = item.GetFriendlyName();
-            thumb.style.backgroundImage = item.GetEditorProperty_Icon().texture;
+
+            Sprite icon = item.GetIcon();
+            if (icon == null)
+            {
+                icon = GMBEditorStyles.SpriteUnKnow;
+            }
+
+            thumb.style.backgroundImage = icon.texture;
             // subTitle.text = item.GetCategory() == null ? StringsProvider._NONE_ + " - Category" : item.GetCategory().GetName();
             subTitle.text = StringsProvider._UNDEFINED_;
 
@@ -194,6 +201,6 @@ namespace GMBEditor
             return _content.Q<E>(elementName);
         }
 
-        
+
     }
 }

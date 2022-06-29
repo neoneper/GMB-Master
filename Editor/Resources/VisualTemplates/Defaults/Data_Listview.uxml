@@ -1,5 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
-    <Style src="project://database/Assets/GMB-Master/Editor/Resources/VisualTemplates/Styles/DefaultTemplateStyle.uss?fileID=7433441132597879392&amp;guid=2b9660a59b404469c8fda7dbf9672dc0&amp;type=3#DefaultTemplateStyle" />
     <ui:VisualElement name="container_listview" style="flex-direction: column; align-items: stretch; flex-grow: 1;">
         <ui:VisualElement name="headder" class="header" style="justify-content: flex-start; align-items: center;">
             <ui:Label text="Datas" display-tooltip-when-elided="true" style="flex-shrink: 1; flex-grow: 1; align-items: center; justify-content: flex-start; padding-left: 10px; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-text-align: middle-left;" />

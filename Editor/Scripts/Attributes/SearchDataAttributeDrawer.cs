@@ -24,7 +24,14 @@ namespace GMBEditor
                 if (property.objectReferenceValue is Data)
                 {
                     Data objData = (Data)property.objectReferenceValue;
-                    GUIContent superLabel = new GUIContent(objData.GetFriendlyName(), objData.GetEditorProperty_Icon().texture);
+
+                    Sprite Icon = objData.GetIcon();
+                    if(Icon == null)
+                    {
+                        Icon = GMBEditorStyles.SpriteUnKnow;
+                    }
+
+                    GUIContent superLabel = new GUIContent(objData.GetFriendlyName(), Icon.texture);
                     label = superLabel;
                 }
             }
