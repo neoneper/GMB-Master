@@ -10,6 +10,7 @@ namespace GMB
     {
 
         [SerializeField] private Data_ItemCategory _category;
+        [SerializeField] private GameObject _prefab;
         [SerializeField] private int _maxStack = 1;
         [SerializeField] private float _weight = 0.1f;
         [SerializeField] private long _buyPrice = 0;
@@ -24,6 +25,11 @@ namespace GMB
         [SerializeField] private List<Data_ItemAttribute> _effects = new List<Data_ItemAttribute>();
         [SerializeField] private List<Data_ItemCrafter> _crafters = new List<Data_ItemCrafter>();
 
+
+        public GameObject GetPrefab()
+        {
+            return _prefab;
+        }
         public Data_ItemCategory GetCategory()
         {
             return _category;

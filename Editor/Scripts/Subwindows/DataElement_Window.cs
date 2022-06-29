@@ -27,7 +27,7 @@ namespace GMBEditor
 
         protected override string GetTemplate_FilePath()
         {
-            return EditorStringsProvider._PATH_GMB_EDITOR_TEMPLATES_DEFAULTS.Combine("Data.uxml");
+            return EditorStringsProvider._PATH_GMB_EDITOR_TEMPLATES_DEFAULTS.Combine("DataPrefab.uxml");
         }
 
         protected override string GetTemplate_ListViewItemFilePath()

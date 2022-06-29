@@ -12,6 +12,7 @@
             <ui:VisualElement style="flex-grow: 1;">
                 <ui:TextField picking-mode="Ignore" label="Name" value="filler text" text="Unnamed" binding-path="_friendlyName" name="data_name" />
                 <uie:ObjectField label="Icon" type="UnityEngine.Sprite, UnityEngine.CoreModule" binding-path="_icon" name="data_icon" allow-scene-objects="false" style="height: 18px;" />
+                <uie:ObjectField label="Prefab" type="UnityEngine.GameObject, UnityEngine.CoreModule" binding-path="_prefab" name="data_prefab" allow-scene-objects="false" style="height: 18px;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

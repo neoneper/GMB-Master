@@ -1,6 +1,6 @@
 ﻿{
     "name": "com.neoneper.gmb",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "displayName": "Game Manager BackEnd",
     "description": "Gerenciador de dados ScriptableObjects",
     "unity": "2019.1",
