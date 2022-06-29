@@ -11,7 +11,7 @@
     "defineConstraints": [],
     "versionDefines": [
         {
-            "name": "Unity",
+            "name": "com.neoneper.gmb",
             "expression": "",
             "define": "GMB_PACK"
         }
