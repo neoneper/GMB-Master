@@ -364,10 +364,7 @@ namespace GMBEditor
 
         #region PROTECTED GETTERS
 
-        public override string GetGMBWindowMenuReferenceName()
-        {
-            return "menu_item_items";
-        }
+       
         protected override string GetTemplate_FilePath()
         {
             return EditorStringsProvider._PATH_GMB_EDITOR_TEMPLATES_ + "Win_Items/Data_Item.uxml";
@@ -387,6 +384,11 @@ namespace GMBEditor
         protected string GetTemplate_ListViewAttributeItemFilePath()
         {
             return EditorStringsProvider._PATH_GMB_EDITOR_TEMPLATES_ + "Win_Items/Data_Item_ListviewItem_Attribute.uxml";
+        }
+
+        public override GMBWindowMenuItem GetGMBWindowMenuItem()
+        {
+            return new GMBWindowMenuItem(this, "menu_item_items", "Items List", "Items");
         }
 
         #endregion

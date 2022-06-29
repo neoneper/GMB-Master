@@ -181,7 +181,7 @@ namespace GMBEditor
         //ABSTRACT Getters
         protected abstract string GetTemplate_FilePath();
         protected abstract string GetTemplate_ListViewItemFilePath();
-        public abstract string GetGMBWindowMenuReferenceName();
+        public abstract GMBWindowMenuItem GetGMBWindowMenuItem();
 
         //ABSTRACT And Virtuais Events Trigged
         protected abstract void OnCreateGUI();
@@ -194,6 +194,6 @@ namespace GMBEditor
             return _content.Q<E>(elementName);
         }
 
-
+        
     }
 }

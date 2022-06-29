@@ -1,55 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
-    <ui:Template name="Menu_Item" src="project://database/Assets/GMB-Master/Editor/Resources/VisualTemplates/Win_Root/Menu_Item.uxml?fileID=9197481963319205126&amp;guid=5843dd06c0c9a46aaa97d56e93410e23&amp;type=3#Menu_Item" />
     <Style src="project://database/Assets/GMB-Master/Editor/Resources/VisualTemplates/Styles/DefaultTemplateStyle.uss?fileID=7433441132597879392&amp;guid=2b9660a59b404469c8fda7dbf9672dc0&amp;type=3#DefaultTemplateStyle" />
     <ui:VisualElement style="flex-direction: row; width: 100%; height: 100%; min-width: auto; min-height: auto; flex-grow: 1;">
         <ui:ScrollView name="root_menu_container" style="width: 250px; flex-grow: 0; flex-shrink: 1; border-left-width: 0; border-right-width: 1px; border-top-width: 0; border-bottom-width: 0; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
             <ui:VisualElement name="content" style="flex-direction: column; flex-grow: 1; height: auto;">
                 <ui:VisualElement name="custom" style="flex-grow: 1;">
                     <ui:VisualElement name="details" class="row" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-grow: 1; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;">
-                        <ui:VisualElement name="general" style="flex-grow: 1; flex-shrink: 1; margin-bottom: 0; flex-wrap: nowrap;">
-                            <ui:VisualElement name="headder" class="header">
-                                <ui:Label text="Attributes" display-tooltip-when-elided="true" style="flex-shrink: 1; flex-grow: 1;" />
-                            </ui:VisualElement>
-                            <ui:Instance template="Menu_Item" name="menu_attribute_items">
-                                <AttributeOverrides element-name="menu_item_label" text="Attributes List" />
-                            </ui:Instance>
-                            <ui:Instance template="Menu_Item" name="menu_attribute_categories">
-                                <AttributeOverrides element-name="menu_item_label" text="Attribute Categories" />
-                            </ui:Instance>
-                            <ui:VisualElement name="headder" class="header">
-                                <ui:Label text="Items" display-tooltip-when-elided="true" style="flex-shrink: 1; flex-grow: 1; -unity-font-style: bold;" />
-                            </ui:VisualElement>
-                            <ui:Instance template="Menu_Item" name="menu_item_items">
-                                <AttributeOverrides element-name="menu_item_label" text="Items List" />
-                            </ui:Instance>
-                            <ui:Instance template="Menu_Item" name="menu_item_categories">
-                                <AttributeOverrides element-name="menu_item_label" text="Item Categories" />
-                            </ui:Instance>
-                            <ui:VisualElement name="headder" class="header">
-                                <ui:Label text="Elements" display-tooltip-when-elided="true" style="flex-shrink: 1; flex-grow: 1;" />
-                            </ui:VisualElement>
-                            <ui:Instance template="Menu_Item" name="menu_element_items">
-                                <AttributeOverrides element-name="menu_item_label" text="Elements List" />
-                            </ui:Instance>
-                            <ui:VisualElement name="headder" class="header">
-                                <ui:Label text="Usages" display-tooltip-when-elided="true" style="flex-shrink: 1; flex-grow: 1;" />
-                            </ui:VisualElement>
-                            <ui:Instance template="Menu_Item" name="menu_usage_items">
-                                <AttributeOverrides element-name="menu_item_label" text="Usages List" />
-                            </ui:Instance>
-                            <ui:VisualElement name="headder" class="header">
-                                <ui:Label text="Occasion" display-tooltip-when-elided="true" style="flex-shrink: 1; flex-grow: 1;" />
-                            </ui:VisualElement>
-                            <ui:Instance template="Menu_Item" name="menu_occasion_items">
-                                <AttributeOverrides element-name="menu_item_label" text="Occasions List" />
-                            </ui:Instance>
-                            <ui:VisualElement name="headder" class="header">
-                                <ui:Label text="Scopes" display-tooltip-when-elided="true" name="Scopes" style="flex-shrink: 1; flex-grow: 1;" />
-                            </ui:VisualElement>
-                            <ui:Instance template="Menu_Item" name="menu_scope_items">
-                                <AttributeOverrides element-name="menu_item_label" text="Scopes List" />
-                            </ui:Instance>
-                        </ui:VisualElement>
+                        <ui:VisualElement name="general" style="flex-grow: 1; flex-shrink: 1; margin-bottom: 0; flex-wrap: nowrap;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>

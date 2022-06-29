@@ -41,9 +41,9 @@ namespace GMBEditor
 
         //The menu name referencied at GMBWindow template. This name need to equal the button menu name of the GMBWindow template.
         //Its will be used to Binding automatically this Window implementation with some menu button of the Root window
-        public override string GetGMBWindowMenuReferenceName()
+        public override GMBWindowMenuItem GetGMBWindowMenuItem()
         {
-            return "menu_attribute_items";
+            return new GMBWindowMenuItem(this, "menu_attribute_items", "Attributes List", "Attributes");
         }
 
     }

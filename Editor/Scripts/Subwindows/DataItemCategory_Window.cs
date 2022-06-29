@@ -33,9 +33,9 @@ namespace GMBEditor
             return EditorStringsProvider._PATH_GMB_EDITOR_TEMPLATES_DEFAULTS.Combine("Data_Listview_Item.uxml");
         }
 
-        public override string GetGMBWindowMenuReferenceName()
+        public override GMBWindowMenuItem GetGMBWindowMenuItem()
         {
-            return "menu_item_categories";
+            return new GMBWindowMenuItem(this, "menu_item_categories", "Categories List", "Items");
         }
     }
 }

@@ -13,7 +13,7 @@ namespace GMBEditor
         /// Informa o nome do VisualElement utilizado como boto de menuy pela janela principal <see cref="GMBWindow"/>
         /// </summary>
         /// <returns></returns>
-        string GetGMBWindowMenuReferenceName();
+        GMBWindowMenuItem GetGMBWindowMenuItem();
 
         void CreateGUI(GMBWindow gmbWindow);
 
