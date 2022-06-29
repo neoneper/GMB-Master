@@ -1,8 +1,8 @@
 ﻿{
     "name": "com.neoneper.gmb",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "displayName": "GMB-Master",
-    "description": "Game Manager BackEnd - Gerenciador de dados ScriptableObjects",
+    "description": "Game Manager BackEnd - ScriptableObjects Data Manager",
     "unity": "2019.1",
     "unityRelease": "0b5",
     "documentationUrl": "https://github.com/neoneper/GMB-Master/wiki",
