@@ -10,8 +10,8 @@ namespace GMBEditor
 {
     public static class GMBEditorExtensions
     {
-        
-     
+
+
 
         //Attributes
         public static T GetPropertyAttribute<T>(this SerializedProperty prop, bool inherit) where T : PropertyAttribute
@@ -30,6 +30,7 @@ namespace GMBEditor
             string[] slices = prop.propertyPath.Split('.');
             System.Type type = prop.serializedObject.targetObject.GetType();
 
+            //Debug.Log(prop.propertyPath);
 
             //Field
             for (int i = 0; i < slices.Length; i++)
@@ -37,15 +38,26 @@ namespace GMBEditor
                 if (slices[i] == "Array")
                 {
                     i++; //skips "data[x]"
-                    type = type.GetElementType(); //gets info on array elements
+
+                    Type nextType = type.GetElementType();
+                    if (nextType == null)
+                    {
+                        nextType = type.GetGenericArguments()[0];
+                    }
+                    type = nextType;
                 }
-                else
+                else if (type != null)
                 {
 
                     f = type.GetField(slices[i], (BindingFlags)(-1));
                     p = type.GetProperty(slices[i], (BindingFlags)(-1));
                     type = f.FieldType;
 
+                }
+                else
+                {
+                    Debug.Log(slices[i]);
+                    Debug.Log(type);
                 }
             }
 
