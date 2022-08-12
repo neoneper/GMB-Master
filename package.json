@@ -1,6 +1,6 @@
 ﻿{
     "name": "com.neoneper.gmb",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "displayName": "GMB-Master",
     "description": "Game Manager BackEnd - ScriptableObjects Data Manager",
     "unity": "2019.1",

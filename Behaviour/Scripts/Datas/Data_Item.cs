@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace GMB
@@ -21,9 +22,7 @@ namespace GMB
         [SerializeField] private Data_Usage _usage = null;
         [SerializeField] private Data_Occasion _occasion = null;
 
-        [SerializeField] private List<Data_ItemIngredient> _recipe = new List<Data_ItemIngredient>();
-        [SerializeField] private List<Data_ItemAttribute> _effects = new List<Data_ItemAttribute>();
-        [SerializeField] private List<Data_ItemCrafter> _crafters = new List<Data_ItemCrafter>();
+       
 
 
         public GameObject GetPrefab()
@@ -73,15 +72,16 @@ namespace GMB
 
         public List<Data_ItemIngredient> GetRecipe()
         {
-            return new List<Data_ItemIngredient>(_recipe);
+           
+            return new List<Data_ItemIngredient>();
         }
         public List<Data_ItemAttribute> GetEffects()
         {
-            return new List<Data_ItemAttribute>(_effects);
+            return new List<Data_ItemAttribute>();
         }
         public List<Data_ItemCrafter> GetCrafters()
         {
-            return new List<Data_ItemCrafter>(_crafters);
+            return new List<Data_ItemCrafter>();
         }
 
         public override string GetNameAsRelativePath()
