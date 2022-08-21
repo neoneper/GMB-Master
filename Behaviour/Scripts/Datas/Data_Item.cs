@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace GMB
 {
+   
+
     [CreateAssetMenu(menuName = "GMB/Data/Data_Item")]
     [ResourcesPath("Items")]
     public class Data_Item : Data
@@ -21,7 +23,7 @@ namespace GMB
         [SerializeField] private Data_Scope _scope = null;
         [SerializeField] private Data_Usage _usage = null;
         [SerializeField] private Data_Occasion _occasion = null;
-
+        
        
 
 
@@ -68,20 +70,6 @@ namespace GMB
         public int GetTagsValue()
         {
             return _tagsValue;
-        }
-
-        public List<Data_ItemIngredient> GetRecipe()
-        {
-           
-            return new List<Data_ItemIngredient>();
-        }
-        public List<Data_ItemAttribute> GetEffects()
-        {
-            return new List<Data_ItemAttribute>();
-        }
-        public List<Data_ItemCrafter> GetCrafters()
-        {
-            return new List<Data_ItemCrafter>();
         }
 
         public override string GetNameAsRelativePath()

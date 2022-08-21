@@ -32,13 +32,14 @@ namespace GMBEditor
                     }
 
                     GUIContent superLabel = new GUIContent(objData.GetFriendlyName(), Icon.texture);
+                    
                     label = superLabel;
                 }
             }
 
 
             EditorGUI.ObjectField(position, property, label);
-
+            //EditorGUI.LabelField(position, label);
 
 
 

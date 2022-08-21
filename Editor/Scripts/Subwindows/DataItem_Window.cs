@@ -226,6 +226,7 @@ namespace GMBEditor
         {
             Data_ItemCategory category = evt.newValue as Data_ItemCategory;
             _bt_category.text = category == null ? "Find" : category.GetFriendlyName();
+            listview.RefreshSelectedItem();
         }
         private void OnItem_ScopeChanged(ChangeEvent<UnityEngine.Object> evt)
         {
@@ -246,6 +247,14 @@ namespace GMBEditor
         {
             Data_Occasion occasion = evt.newValue as Data_Occasion;
             _bt_occasion.text = occasion == null ? "Find" : occasion.GetFriendlyName();
+        }
+
+        protected override void OnListView_BindItem_Requested(VisualElement element, Data_Item item)
+        {
+            base.OnListView_BindItem_Requested(element, item);
+
+            Label subTitle = element.Q<Label>("subtitle");
+            subTitle.text = item.GetCategory()?.GetFriendlyName();
         }
 
         //Recipe
