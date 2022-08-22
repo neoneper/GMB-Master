@@ -40,6 +40,10 @@ namespace GMB
             return _owner;
         }
 
+        /// <summary>
+        /// Quantidade necessaria do <see cref="GetItem"/>, para a fabricao do do item <see cref="GetOwner"/>
+        /// </summary>
+        /// <returns></returns>
         public int GetRequiredValue()
         {
             return _requiredValue;
