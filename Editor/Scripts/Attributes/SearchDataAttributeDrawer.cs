@@ -26,13 +26,13 @@ namespace GMBEditor
                     Data objData = (Data)property.objectReferenceValue;
 
                     Sprite Icon = objData.GetIcon();
-                    if(Icon == null)
+                    if (Icon == null)
                     {
                         Icon = GMBEditorStyles.SpriteUnKnow;
                     }
 
                     GUIContent superLabel = new GUIContent(objData.GetFriendlyName(), Icon.texture);
-                    
+
                     label = superLabel;
                 }
             }
@@ -47,7 +47,7 @@ namespace GMBEditor
             position.width = 60;
             if (GUI.Button(position, new GUIContent("Find")))
             {
-                // Debug.Log(property.GetFieldType());
+               
 
                 Type dataType = property?.GetPropertyAttribute<SearchDataAttribute>(true).searchObjectType;
 

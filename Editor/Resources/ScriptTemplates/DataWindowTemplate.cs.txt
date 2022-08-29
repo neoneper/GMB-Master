@@ -43,7 +43,7 @@ namespace GMBEditor
         //Its will be used to Binding automatically this Window implementation with some menu button of the Root window
         public override GMBWindowMenuItem GetGMBWindowMenuItem()
         {
-            return new GMBWindowMenuItem("menu_id", "menu_label", "menu_headder_label");
+            return new GMBWindowMenuItem(this, "menu_id", "menu_label", "menu_headder_label");
         }
 
     }

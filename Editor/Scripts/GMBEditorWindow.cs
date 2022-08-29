@@ -117,7 +117,6 @@ namespace GMBEditor
             Label title = element.Q<Label>("title");
             Label subTitle = element.Q<Label>("subtitle");
             VisualElement thumb = element.Q<VisualElement>("img");
-
             title.text = item.GetFriendlyName();
 
             Sprite icon = item.GetIcon();

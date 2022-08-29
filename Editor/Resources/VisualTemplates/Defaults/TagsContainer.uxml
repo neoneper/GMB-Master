@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;">
+        <ui:VisualElement style="flex-direction: row;">
+            <ui:Label text="Tags:" display-tooltip-when-elided="true" style="flex-shrink: 1; flex-grow: 1; -unity-font-style: bold;" />
+            <ui:Button text="Add Tag" display-tooltip-when-elided="true" />
+        </ui:VisualElement>
+        <ui:VisualElement name="content_tags" style="flex-grow: 0; flex-direction: row; flex-wrap: wrap;">
+            <ui:Button text="Button" display-tooltip-when-elided="true" />
+            <ui:Button text="Button" display-tooltip-when-elided="true" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

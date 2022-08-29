@@ -184,13 +184,15 @@ namespace GMBEditor
             RefreshSelectedItem();
         }
 
-        public void AddNewIntemFromInstance(T instance)
+        public virtual void OnAddNewIntemFromInstance(T instance)
         {
             if (instance == null)
             {
                 Debug.LogError("Erro to create " + instance.name + ".asset, because this have not a IData interface implemantation");
                 return;
             }
+
+            instance.SetAutoIncrementID();
 
             GMBEditorUtility.CreateAsset(instance, _path_dataItems + "/" + instance.GetID() + ".asset");
 
@@ -260,7 +262,7 @@ namespace GMBEditor
             }
 
 
-            AddNewIntemFromInstance(instance);
+            OnAddNewIntemFromInstance(instance);
 
             //Select the created item in the listview
             // T createdItem = (T)instance;

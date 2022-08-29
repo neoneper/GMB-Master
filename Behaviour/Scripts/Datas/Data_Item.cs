@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace GMB
 {
-   
+
 
     [CreateAssetMenu(menuName = "GMB/Data/Data_Item")]
     [ResourcesPath("Items")]
-    public class Data_Item : Data
+    public class Data_Item : Data, IData_Vendor, IData_Inventory
     {
 
         [SerializeField] private Data_ItemCategory _category;
@@ -23,9 +23,24 @@ namespace GMB
         [SerializeField] private Data_Scope _scope = null;
         [SerializeField] private Data_Usage _usage = null;
         [SerializeField] private Data_Occasion _occasion = null;
-        
-       
+        [SerializeField] private List<Data_Tag> _tags = new List<Data_Tag>();
 
+        public List<Data_Tag> GetTags()
+        {
+            return _tags;
+        }
+        public List<string> GetTagsName()
+        {
+            return _tags.Select(r => r.GetFriendlyName()).ToList();
+        }
+        public bool ContainsTagName(string tag)
+        {
+            return _tags.Count(r => r.GetFriendlyName() == tag) > 0;
+        }
+        public int GetTagIndex(Data_Tag tag)
+        {
+            return _tags.IndexOf(tag);
+        }
 
         public GameObject GetPrefab()
         {
@@ -67,14 +82,10 @@ namespace GMB
         {
             return _sellPrice;
         }
-        public int GetTagsValue()
-        {
-            return _tagsValue;
-        }
-
+       
         public override string GetNameAsRelativePath()
         {
-          
+
             string result = "";
 
             if (_category != null)
