@@ -14,7 +14,7 @@ namespace GMBEditor
         /// </summary>
         /// <returns></returns>
         GMBWindowMenuItem GetGMBWindowMenuItem();
-
+        GMBWindow GetGMBWindow();
         void CreateGUI(GMBWindow gmbWindow);
 
         void CloseGUI();

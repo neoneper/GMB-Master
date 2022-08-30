@@ -9,7 +9,7 @@ namespace GMB
 
     [CreateAssetMenu(menuName = "GMB/Data/Data_Item")]
     [ResourcesPath("Items")]
-    public class Data_Item : Data, IData_Vendor, IData_Inventory
+    public class Data_Item : Data, IData_Vendor, IData_Inventory, IData_Tags
     {
 
         [SerializeField] private Data_ItemCategory _category;

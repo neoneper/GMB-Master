@@ -115,6 +115,26 @@ namespace GMBEditor
             content.Clear();
         }
 
+        public void OnMenuSelected(Type winType)
+        {
+            Button bt = menuButtons.FirstOrDefault(r => r.userData.GetType() == winType);
+            if (bt == null)
+            {
+                return;
+            }
+
+            if (currentSelectedWindowMenu != null)
+            {
+                currentSelectedWindowMenu.CloseGUI();
+            }
+
+            content.Clear();
+
+
+            currentSelectedWindowMenu = bt.userData as IGMBEditorWindow;
+            currentSelectedWindowMenu.CreateGUI(this);
+        }
+
         private void OnMenuSelected(EventBase obj)
         {
             if (currentSelectedWindowMenu != null)

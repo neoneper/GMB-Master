@@ -33,9 +33,15 @@ namespace GMBEditor
 
         protected T listview_selectedItem { get { return _listview_selectedItem; } }
 
+       
         public GMBEditorWindow()
         {
             _listview = new GMBEditorListView<T>();
+        }
+
+        public GMBWindow GetGMBWindow()
+        {
+            return _gmbWindow;
         }
 
         public void CreateGUI(GMBWindow gmbWindow)

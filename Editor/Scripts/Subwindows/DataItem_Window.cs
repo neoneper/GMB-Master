@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using System.Linq;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.PackageManager.UI;
 
 namespace GMBEditor
 {
@@ -19,7 +20,6 @@ namespace GMBEditor
         Button _bt_scope;
         Button _bt_usage;
         Button _bt_occasion;
-        Button _bt_tag;
 
         ObjectField _objectField_category;
         ObjectField _objectField_usage;
@@ -30,9 +30,8 @@ namespace GMBEditor
         GMBEditorListView<Data_ItemIngredient> _listview_recipe;
         GMBEditorListView<Data_ItemCrafter> _listview_crafters;
         GMBEditorListView<Data_ItemAttribute> _listview_attributes;
+        GMBEditorTagsView _tags;
 
-        VisualElement _tagsContent;
-        List<Button> _bufferTagButtons = new List<Button>();
 
         //WIndow Callbacks
         protected override void OnCreateGUI()
@@ -53,13 +52,15 @@ namespace GMBEditor
             UnInitializeAttributes();
             UnInitializeRecipe();
             UnInitializeCrafters();
-            UnInitializeTags();
+
         }
         protected override void OnSelectedItemChanged()
         {
             _listview_recipe.Refresh();
             _listview_crafters.Refresh();
             _listview_attributes.Refresh();
+            _tags.RefreshTagsContent(listview_selectedItem.GetTags());
+
 
             _bt_category.text = listview_selectedItem.GetCategory() == null ? "Find" : listview_selectedItem.GetCategory().GetFriendlyName();
             _bt_element.text = listview_selectedItem.GetElement() == null ? "Find" : listview_selectedItem.GetElement().GetFriendlyName();
@@ -67,10 +68,11 @@ namespace GMBEditor
             _bt_scope.text = listview_selectedItem.GetScope() == null ? "Find" : listview_selectedItem.GetScope().GetFriendlyName();
             _bt_usage.text = listview_selectedItem.GetUsage() == null ? "Find" : listview_selectedItem.GetUsage().GetFriendlyName();
 
-            RefreshTagsContent();
+
+
         }
 
-       
+
 
 
         #region PRIVATE UTIL FUNCTIONS
@@ -81,9 +83,10 @@ namespace GMBEditor
             _bt_scope = GetElement<Button>("bt_scope");
             _bt_occasion = GetElement<Button>("bt_occasion");
             _bt_usage = GetElement<Button>("bt_usage");
-            _bt_tag = GetElement<Button>("bt_add_tag");
-            _tagsContent = GetElement<VisualElement>("tags").Q("content");
-           
+
+            _tags = new GMBEditorTagsView(this, GetElement<Button>("bt_add_tag"), GetElement<VisualElement>("tags").Q("content"));
+            _tags.OnSerializedObjectItemRequest += OnTagObjectItemRequest;
+
 
             _objectField_category = GetElement<ObjectField>("data_category");
             _objectField_element = GetElement<ObjectField>("data_element");
@@ -97,7 +100,6 @@ namespace GMBEditor
             _bt_occasion.RegisterCallback<PointerDownEvent>(OnOccasionSearch, TrickleDown.TrickleDown);
             _bt_scope.RegisterCallback<PointerDownEvent>(OnScopeSearch, TrickleDown.TrickleDown);
             _bt_usage.RegisterCallback<PointerDownEvent>(OnUsageSearch, TrickleDown.TrickleDown);
-            _bt_tag.RegisterCallback<PointerDownEvent>(OnTagSearch, TrickleDown.TrickleDown);
 
             _objectField_category.RegisterValueChangedCallback(OnItem_CategoryChanged);
             _objectField_element.RegisterValueChangedCallback(OnItem_ElementChanged);
@@ -112,14 +114,19 @@ namespace GMBEditor
             _bt_occasion.UnregisterCallback<PointerDownEvent>(OnOccasionSearch, TrickleDown.TrickleDown);
             _bt_scope.UnregisterCallback<PointerDownEvent>(OnScopeSearch, TrickleDown.TrickleDown);
             _bt_usage.UnregisterCallback<PointerDownEvent>(OnUsageSearch, TrickleDown.TrickleDown);
-            _bt_tag.UnregisterCallback<PointerDownEvent>(OnTagSearch, TrickleDown.TrickleDown);
 
             _objectField_category.UnregisterValueChangedCallback(OnItem_CategoryChanged);
             _objectField_element.UnregisterValueChangedCallback(OnItem_ElementChanged);
             _objectField_occasion.UnregisterValueChangedCallback(OnItem_OccasionChanged);
             _objectField_scope.UnregisterValueChangedCallback(OnItem_ScopeChanged);
             _objectField_usage.UnregisterValueChangedCallback(OnItem_UsageChanged);
+
+            _tags.OnSerializedObjectItemRequest += OnTagObjectItemRequest;
+            _tags.Unitialize();
         }
+
+
+
         private void InitializeAttributes()
         {
             _listview_attributes = new GMBEditorListView<Data_ItemAttribute>();
@@ -179,51 +186,16 @@ namespace GMBEditor
             _listview_crafters.OnListViewLoadDatasCallback -= OnCrafters_LoadDatas;
             _listview_crafters.UnInitialize();
         }
-        private void UnInitializeTags()
-        {
-            //Tags 
-            foreach (Button bt in _bufferTagButtons)
-            {
-                bt.clickable.clickedWithEventInfo -= OnTagRemoveRequest;
-            }
-            _bufferTagButtons.Clear();
-            _tagsContent.Clear();
-        }
-        private void RefreshTagsContent()
-        {
-            UnInitializeTags();
-            if (listview_selectedItem == null)
-                return;
 
-            foreach (Data_Tag tag in listview_selectedItem.GetTags())
-            {
-                Button bt = new Button();
-                bt.text = tag.GetFriendlyName();
-                bt.userData = tag;
-                bt.clickable.clickedWithEventInfo += OnTagRemoveRequest;
-                _tagsContent.Add(bt);
-                _bufferTagButtons.Add(bt);
-            }
-        }
         #endregion
 
         #region FUNCTION CALLBACKS
+
         //Tags
-        private void OnTagRemoveRequest(EventBase obj)
+        private SerializedObject OnTagObjectItemRequest()
         {
-            SerializedObject serializedObject = listview_selectedItem.GetSerializedObject();
-            SerializedProperty property = serializedObject.FindProperty("_tags");
-            Data_Tag tag = ((Data_Tag)((VisualElement)obj.target).userData);
-
-            int index = listview_selectedItem.GetTagIndex(tag);
-
-            property.DeleteArrayElementAtIndex(index);
-            
-            serializedObject.ApplyModifiedPropertiesWithoutUndo();
-
-            RefreshTagsContent();
+            return listview_selectedItem.GetSerializedObject();
         }
-
         //Item
         private void OnCategorySearch(PointerDownEvent evt)
         {
@@ -245,56 +217,68 @@ namespace GMBEditor
         {
             DataEditorUtility.ShowSearchWindow<Data_Occasion>("Item Occasions", GUIUtility.GUIToScreenPoint(evt.position), OnItem_OccasionRequest);
         }
-        private void OnTagSearch(PointerDownEvent evt)
-        {
-            DataEditorUtility.ShowSearchWindow<Data_Tag>("Tags", GUIUtility.GUIToScreenPoint(evt.position), OnItem_TagRequest, listview_selectedItem.GetTags());
-        }
+
 
 
         private void OnItem_CategoryRequest(GMBEditorSearchProvider.SearchResult result)
         {
+
+            if (result.resultFriendlyName == EditorStringsProvider._LISTVIEW_NEW_OPTIONS_)
+            {
+                GetGMBWindow().OnMenuSelected(typeof(DataItemCategory_Window));
+                return;
+            }
+
             SerializedObject serializedObject = listview_selectedItem.GetSerializedObject();
             serializedObject.FindProperty("_category").objectReferenceValue = result.GetDataFile<Data_ItemCategory>();
             serializedObject.ApplyModifiedPropertiesWithoutUndo();
         }
         private void OnItem_ScopeRequest(GMBEditorSearchProvider.SearchResult result)
         {
+            if (result.resultFriendlyName == EditorStringsProvider._LISTVIEW_NEW_OPTIONS_)
+            {
+                GetGMBWindow().OnMenuSelected(typeof(DataScope_Window));
+                return;
+            }
+
             SerializedObject serializedObject = listview_selectedItem.GetSerializedObject();
             serializedObject.FindProperty("_scope").objectReferenceValue = result.GetDataFile<Data_Scope>();
             serializedObject.ApplyModifiedPropertiesWithoutUndo();
         }
         private void OnItem_UsageRequest(GMBEditorSearchProvider.SearchResult result)
         {
+            if (result.resultFriendlyName == EditorStringsProvider._LISTVIEW_NEW_OPTIONS_)
+            {
+                GetGMBWindow().OnMenuSelected(typeof(DataUsage_Window));
+                return;
+            }
+
             SerializedObject serializedObject = listview_selectedItem.GetSerializedObject();
             serializedObject.FindProperty("_usage").objectReferenceValue = result.GetDataFile<Data_Usage>();
             serializedObject.ApplyModifiedPropertiesWithoutUndo();
         }
         private void OnItem_OccasionRequest(GMBEditorSearchProvider.SearchResult result)
         {
+            if (result.resultFriendlyName == EditorStringsProvider._LISTVIEW_NEW_OPTIONS_)
+            {
+                GetGMBWindow().OnMenuSelected(typeof(DataOccasion_Window));
+                return;
+            }
             SerializedObject serializedObject = listview_selectedItem.GetSerializedObject();
             serializedObject.FindProperty("_occasion").objectReferenceValue = result.GetDataFile<Data_Occasion>();
             serializedObject.ApplyModifiedPropertiesWithoutUndo();
         }
         private void OnItem_ElementRequest(GMBEditorSearchProvider.SearchResult result)
         {
-
+            if (result.resultFriendlyName == EditorStringsProvider._LISTVIEW_NEW_OPTIONS_)
+            {
+                GetGMBWindow().OnMenuSelected(typeof(DataElement_Window));
+                return;
+            }
             SerializedObject serializedObject = listview_selectedItem.GetSerializedObject();
             serializedObject.FindProperty("_element").objectReferenceValue = result.GetDataFile<Data_Element>();
             serializedObject.ApplyModifiedPropertiesWithoutUndo();
         }
-        private void OnItem_TagRequest(GMBEditorSearchProvider.SearchResult result)
-        {
-
-            SerializedObject serializedObject = listview_selectedItem.GetSerializedObject();
-            SerializedProperty property = serializedObject.FindProperty("_tags");
-            int index = property.arraySize;
-            property.InsertArrayElementAtIndex(index);
-            property.GetArrayElementAtIndex(index).objectReferenceValue = result.GetDataFile<Data_Tag>();
-            serializedObject.ApplyModifiedPropertiesWithoutUndo();
-            RefreshTagsContent();
-        }
-
-
 
         private void OnItem_CategoryChanged(ChangeEvent<UnityEngine.Object> evt)
         {
@@ -334,6 +318,7 @@ namespace GMBEditor
         //Recipe
         private void OnRecipe_SearchItemRequest(PointerDownEvent evt)
         {
+
             List<Data_Item> itemsToIgnore = new List<Data_Item>();
             itemsToIgnore.Add(listview_selectedItem);
             itemsToIgnore.AddRange(_listview_recipe.Items.Select(r => r.GetItem()).ToList());
@@ -342,7 +327,13 @@ namespace GMBEditor
         }
         private void OnRecipe_AddItemRequest(GMBEditorSearchProvider.SearchResult obj)
         {
+           
+
             Data_Item item = obj.GetDataFile<Data_Item>();
+
+            if (item == null)
+                return;
+
             Data_ItemIngredient ingredient = ScriptableObject.CreateInstance<Data_ItemIngredient>();
             ingredient.SetItem(item);
             ingredient.SetOwner(listview_selectedItem);
@@ -379,6 +370,10 @@ namespace GMBEditor
         private void OnCrafters_AddItemRequest(GMBEditorSearchProvider.SearchResult obj)
         {
             Data_Item item = obj.GetDataFile<Data_Item>();
+
+            if (item == null)
+                return;
+
             Data_ItemCrafter crafter = ScriptableObject.CreateInstance<Data_ItemCrafter>();
             crafter.SetItem(item);
             crafter.SetOwner(listview_selectedItem);
@@ -414,7 +409,19 @@ namespace GMBEditor
         }
         private void OnAttribute_AddItemRequest(GMBEditorSearchProvider.SearchResult obj)
         {
+
+            if (obj.resultFriendlyName == EditorStringsProvider._LISTVIEW_NEW_OPTIONS_)
+            {
+                GetGMBWindow().OnMenuSelected(typeof(DataAttribute_Window));
+                return;
+            }
+
+           
+
             Data_Attribute attribute = obj.GetDataFile<Data_Attribute>();
+            if (attribute == null)
+                return;
+
             Data_ItemAttribute itemAttr = ScriptableObject.CreateInstance<Data_ItemAttribute>();
             itemAttr.SetAttribute(attribute);
             itemAttr.SetOwner(listview_selectedItem);

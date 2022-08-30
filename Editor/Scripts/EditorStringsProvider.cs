@@ -9,6 +9,9 @@ namespace GMBEditor
 {
     public class EditorStringsProvider
     {
+        public const string _LISTVIEW_NONE_OPTIONS_ = "0 - NONE";
+        public const string _LISTVIEW_NEW_OPTIONS_ = "1 - CREATE NEW";
+
         private static string _ROOTFOLDER_
         {
             get

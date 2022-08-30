@@ -41,7 +41,7 @@ namespace GMBEditor
             {
                 string path = DataEditorUtility.GetAbsoluteResourcesDatasPath(type).Combine(resultFileName);
                 // Debug.Log(path);
-                UnityEngine.Object obj = AssetDatabase.LoadAssetAtPath(path,type);
+                UnityEngine.Object obj = AssetDatabase.LoadAssetAtPath(path, type);
                 return obj;
             }
 
@@ -65,6 +65,8 @@ namespace GMBEditor
         {
             GMBEditorSearchProvider data = ScriptableObject.CreateInstance<GMBEditorSearchProvider>();
             data.listItems = itemsRelativePath;
+            ArrayUtility.Insert(ref data.listItems, 0, "Options/" + EditorStringsProvider._LISTVIEW_NONE_OPTIONS_);
+            ArrayUtility.Insert(ref data.listItems, 0, "Options/" + EditorStringsProvider._LISTVIEW_NEW_OPTIONS_);
             data.onSetIndexCallback = callback;
             data.winTitle = windowTitle;
             return data;
@@ -143,6 +145,7 @@ namespace GMBEditor
                 //entry.userData = entryTitle.Last();
                 list.Add(entry);
             }
+
 
             return list;
         }

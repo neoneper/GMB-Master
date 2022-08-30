@@ -34,7 +34,6 @@ namespace GMBEditor
 
         string _path_dataItems = "";
 
-
         public void Initialize(VisualElement root, string listView, string addItemButton, string path_dataItems)
         {
             _items = new List<T>();
