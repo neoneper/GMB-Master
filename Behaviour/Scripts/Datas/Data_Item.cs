@@ -28,6 +28,15 @@ namespace GMB
         [SerializeField] private Data_Occasion _occasion = null;
         [SerializeField] private List<Data_Tag> _tags = new List<Data_Tag>();
 
+
+        public int GetGridRows()
+        {
+            return _gridRows;
+        }
+        public int GetGridCols()
+        {
+            return _gridCols;
+        }
         public List<Data_Tag> GetTags()
         {
             return _tags;
