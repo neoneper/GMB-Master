@@ -9,12 +9,15 @@ namespace GMB
 
     [CreateAssetMenu(menuName = "GMB/Data/Data_Item")]
     [ResourcesPath("Items")]
-    public class Data_Item : Data, IData_Vendor, IData_Inventory, IData_Tags
+    public partial class Data_Item : Data, IData_Vendor, IData_Inventory, IData_Tags
     {
 
         [SerializeField] private Data_ItemCategory _category;
         [SerializeField] private GameObject _prefab;
         [SerializeField] private int _maxStack = 1;
+        [SerializeField] private int _gridRows = 1;
+        [SerializeField] private int _gridCols = 1;
+
         [SerializeField] private float _weight = 0.1f;
         [SerializeField] private long _buyPrice = 0;
         [SerializeField] private long _sellPrice = 0;

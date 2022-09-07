@@ -12,7 +12,7 @@ using UnityEditor.PackageManager.UI;
 
 namespace GMBEditor
 {
-    public class DataItem_Window : GMBEditorWindow<Data_Item>
+    public partial class DataItem_Window : GMBEditorWindow<Data_Item>
     {
 
         Button _bt_category;

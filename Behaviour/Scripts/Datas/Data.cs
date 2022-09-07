@@ -32,9 +32,15 @@ namespace GMB
         [SerializeField] private Sprite _icon = null;
 
         /// <summary>
-        /// Auto incremented ID - ID numerico Único e auto incrementado quando este dado foi criado pelo GMB Editor. Utilize este ID para ordenacao de array consistente.
+        /// Auto incremented ID
         /// <para>
-        /// Importante: Este ID ainda esta em avalicao. Ele e automaticamente incrimentado apartir do GMBSettings, scriptable de configuracoes do GMBEditor. 
+        /// - ID numerico Único e auto incrementado. Setado quando este dado foi criado pelo GMB Editor. Utilize este ID para salvar e ordenar os dados de maneira consistente e persistente
+        /// em instancias de inicializacao e banco dados.
+        /// </para>
+        /// A unica maneira de haver discrepancia com dados perssistentes e se o ID de todos os arquivos previamente cadastrados forem (Resetados). Isto
+        /// atualmente e possivel, atravez de configuracoes do GMB
+        /// <para>
+        /// Importante: Este ID ainda esta em avalicao. Ele é automaticamente incrimentado apartir do GMBSettings, scriptable de configuracoes do GMBEditor. 
         /// </para>
         /// </summary>
         /// <returns></returns>
@@ -45,17 +51,18 @@ namespace GMB
 
         /// <summary>
         /// Tick Time ID: ID Baseado no numero de ticks da data de criacao do dado. Pode ser utilizado como ID Unico e auto incrementado, para para
-        /// ordenacao de arrays consistente
+        /// ordenacao de arrays consistente, bem como <see cref="GetAID"/>
         /// </summary>
         /// <returns></returns>
         public long GetTID()
-        {            
+        {
             return DateTime.Parse(_createdDate).Ticks;
         }
-       
+
 
         /// <summary>
-        /// ID Unico deste Dado. Utilize<see cref="GetAID"/>, para uma versao numerica auto incrementada
+        /// ID Unico deste Dado. Util para garantir persistencia de dados. Voce tambem pode querer utilizar
+        /// <see cref="GetAID"/>, para uma versao mais eficiente de persistencia.
         /// </summary>
         /// <returns></returns>
         public string GetID()
